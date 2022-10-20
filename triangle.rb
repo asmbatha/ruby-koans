@@ -14,9 +14,35 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
-  # WRITE THIS CODE
+  fail TriangleError.new if
+    a <= 0 ||
+    b <= 0 ||
+    c <= 0 ||
+    a >= b + c ||
+    b >= a + c ||
+    c >= a + b
+
+  equal_sides = 0
+
+  if a == b
+    equal_sides += 1
+  end
+
+  if b == c
+    equal_sides += 1
+  end
+  return :equilateral if equal_sides == 2
+
+  if a == c
+    equal_sides += 1
+  end
+
+  return :isosceles if equal_sides == 1
+
+  :scalene if equal_sides == 0
 end
 
 # Error class used in part 2.  No need to change this code.
 class TriangleError < StandardError
 end
+
